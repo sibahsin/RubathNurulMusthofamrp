@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informasi Lengkap - Rubath Nurul Musthofa</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        @keyframes shimmerLoop {
+            0% { transform: translateX(-150%) skewX(-25deg); }
+            50% { transform: translateX(150%) skewX(-25deg); }
+            100% { transform: translateX(150%) skewX(-25deg); }
+        }
+
+        .shimmer-btn {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .shimmer-btn::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 200%; height: 100%;
+            background: linear-gradient(
+                to right, 
+                transparent, 
+                rgba(255, 255, 255, 0.3) 30%, 
+                rgba(255, 255, 255, 0.5) 50%, 
+                transparent 70%
+            );
+            transform: translateX(-150%) skewX(-25deg);
+            animation: shimmerLoop 3.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 overflow-x-hidden" x-data="{ mobileMenuOpen: false }">
+
+    <nav x-data="{ activeMenu: 'biaya', init() {
+            const path = window.location.pathname.split('/').pop();
+            const hash = window.location.hash || '';
+            if (path === 'persyaratan&biaya.html' || hash.includes('biaya')) this.activeMenu = 'biaya';
+        } }" x-init="init()" class="fixed w-full top-0 left-0 z-50 bg-emerald-900/90 backdrop-blur-md py-4 shadow-md border-b border-emerald-800">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="flex justify-between items-center">
+                <a href="index.html#beranda" class="flex items-center space-x-2 sm:space-x-3 group cursor-pointer max-w-[75%] sm:max-w-none">
+                    <img src="favicon.webp" alt="Rubath Logo" class="w-9 h-9 sm:w-10 sm:h-10 bg-white rounded-xl object-cover shadow-md group-hover:scale-110 transition-transform duration-300 flex-shrink-0" />
+                    <span class="text-base sm:text-xl font-extrabold tracking-wider text-white truncate">Rubath Nurul Musthofa</span>
+                </a>
+                
+                <div class="hidden md:flex space-x-1 font-semibold text-sm">
+                    <a href="index.html#beranda" @click="activeMenu='beranda'" :class="activeMenu === 'beranda' ? 'px-3.5 py-2 rounded-lg bg-white/20 text-white transition-all duration-300' : 'px-3.5 py-2 rounded-lg text-emerald-100 hover:bg-emerald-800/60 hover:text-white transition-all duration-300'">Beranda</a>
+                    <a href="index.html#fitur" @click="activeMenu='fitur'" :class="activeMenu === 'fitur' ? 'px-3.5 py-2 rounded-lg bg-white/20 text-white transition-all duration-300' : 'px-3.5 py-2 rounded-lg text-emerald-100 hover:bg-emerald-800/60 hover:text-white transition-all duration-300'">Fitur</a>
+                    <a href="pengurus.html" @click="activeMenu='pengurus'" :class="activeMenu === 'pengurus' ? 'px-3.5 py-2 rounded-lg bg-white/20 text-white transition-all duration-300' : 'px-3.5 py-2 rounded-lg text-emerald-100 hover:bg-emerald-800/60 hover:text-white transition-all duration-300'">Pengurus</a>
+                    <a href="index.html#santri" @click="activeMenu='santri'" :class="activeMenu === 'santri' ? 'px-3.5 py-2 rounded-lg bg-white/20 text-white transition-all duration-300' : 'px-3.5 py-2 rounded-lg text-emerald-100 hover:bg-emerald-800/60 hover:text-white transition-all duration-300'">Santri</a>
+                    <a href="index.html#galeri" @click="activeMenu='galeri'" :class="activeMenu === 'galeri' ? 'px-3.5 py-2 rounded-lg bg-white/20 text-white transition-all duration-300' : 'px-3.5 py-2 rounded-lg text-emerald-100 hover:bg-emerald-800/60 hover:text-white transition-all duration-300'">Galeri</a>
+                    <a href="persyaratan&biaya.html" @click="activeMenu='biaya'" :class="activeMenu === 'biaya' ? 'px-3.5 py-2 rounded-lg bg-white/20 text-white transition-all duration-300' : 'px-3.5 py-2 rounded-lg text-emerald-100 hover:bg-emerald-800/60 hover:text-white transition-all duration-300'">Persyaratan & Biaya</a>
+                 <a href="fasilitas.html" @click="activeMenu='fasilitas'; mobileMenuOpen=false" :class="activeMenu === 'fasilitas' ? 'px-3.5 py-2 rounded-lg bg-white/20 text-white transition-all duration-300' : 'px-3.5 py-2 rounded-lg text-emerald-100 hover:bg-emerald-800/60 hover:text-white transition-all duration-300'">Fasilitas Pesantren</a>
+                </div>
+                
+                <div class="hidden md:block">
+                    <button class="bg-white text-emerald-900 font-bold px-6 py-2.5 rounded-full shadow-md hover:bg-emerald-50 hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer">
+                        Masuk / Daftar
+                    </button>
+                </div>
+
+                <div class="flex md:hidden">
+                    <button @click="mobileMenuOpen = !mobileMenuOpen" type="button" class="text-emerald-100 hover:text-white focus:outline-none p-2 rounded-lg transition-colors cursor-pointer" aria-label="Toggle Menu">
+                        <svg x-show="!mobileMenuOpen" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <svg x-show="mobileMenuOpen" style="display: none;" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div x-show="mobileMenuOpen" 
+                 x-transition:enter="transition ease-out duration-300 transform"
+                 x-transition:enter-start="opacity-0 -translate-y-4"
+                 x-transition:enter-end="opacity-100 translate-y-0"
+                 x-transition:leave="transition ease-in duration-200 transform"
+                 x-transition:leave-start="opacity-100 translate-y-0"
+                 x-transition:leave-end="opacity-0 -translate-y-4"
+                 class="md:hidden mt-4 mx-1 pt-4 rounded-3xl border border-emerald-800/40 bg-emerald-900/90 text-white backdrop-blur-xl shadow-2xl ring-1 ring-black/10 overflow-hidden flex flex-col space-y-2 font-semibold text-sm"
+                 style="display: none;">
+                <a href="index.html#beranda" @click="activeMenu='beranda'; mobileMenuOpen=false" :class="activeMenu === 'beranda' ? 'px-4 py-3 rounded-xl bg-white/20 text-white transition-all' : 'px-4 py-3 rounded-xl text-emerald-100 bg-emerald-950/30 hover:bg-emerald-800/60 hover:text-white transition-all'"><i class="fa-solid fa-house mr-2 opacity-70"></i>Beranda</a>
+                <a href="index.html#fitur" @click="activeMenu='fitur'; mobileMenuOpen=false" :class="activeMenu === 'fitur' ? 'px-4 py-3 rounded-xl bg-white/20 text-white transition-all' : 'px-4 py-3 rounded-xl text-emerald-100 bg-emerald-950/30 hover:bg-emerald-800/60 hover:text-white transition-all'"><i class="fa-solid fa-layer-group mr-2 opacity-70"></i>Fitur</a>
+                <a href="pengurus.html" @click="activeMenu='pengurus'; mobileMenuOpen=false" :class="activeMenu === 'pengurus' ? 'px-4 py-3 rounded-xl bg-white/20 text-white transition-all' : 'px-4 py-3 rounded-xl text-emerald-100 bg-emerald-950/30 hover:bg-emerald-800/60 hover:text-white transition-all'"><i class="fa-solid fa-users mr-2 opacity-70"></i>Pengurus</a>
+                <a href="index.html#santri" @click="activeMenu='santri'; mobileMenuOpen=false" :class="activeMenu === 'santri' ? 'px-4 py-3 rounded-xl bg-white/20 text-white transition-all' : 'px-4 py-3 rounded-xl text-emerald-100 bg-emerald-950/30 hover:bg-emerald-800/60 hover:text-white transition-all'"><i class="fa-solid fa-graduation-cap mr-2 opacity-70"></i>Santri</a>
+                <a href="index.html#galeri" @click="activeMenu='galeri'; mobileMenuOpen=false" :class="activeMenu === 'galeri' ? 'px-4 py-3 rounded-xl bg-white/20 text-white transition-all' : 'px-4 py-3 rounded-xl text-emerald-100 bg-emerald-950/30 hover:bg-emerald-800/60 hover:text-white transition-all'"><i class="fa-solid fa-images mr-2 opacity-70"></i>Galeri</a>
+                <a href="persyaratan&biaya.html" @click="activeMenu='biaya'; mobileMenuOpen=false" :class="activeMenu === 'biaya' ? 'px-4 py-3 rounded-xl bg-white/20 text-white transition-all' : 'px-4 py-3 rounded-xl text-emerald-100 bg-emerald-950/30 hover:bg-emerald-800/60 hover:text-white transition-all'"><i class="fa-solid fa-money-bill-wave mr-2 opacity-70"></i>Persyaratan & Biaya</a>
+                <a href="fasilitas.html" @click="activeMenu='fasilitas'; mobileMenuOpen=false" :class="activeMenu === 'fasilitas' ? 'px-4 py-3 rounded-xl bg-white/20 text-white transition-all' : 'px-4 py-3 rounded-xl text-emerald-100 bg-emerald-950/30 hover:bg-emerald-800/60 hover:text-white transition-all'"><i class="fa-solid fa-building mr-2 opacity-70"></i>Fasilitas Pesantren</a>
+                <div class="pt-2">
+                    <button class="w-full bg-white text-emerald-900 font-bold px-6 py-3 rounded-xl shadow-md hover:bg-emerald-50 active:scale-95 transition-all duration-300 cursor-pointer">
+                        Masuk / Daftar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="relative pt-32 pb-16 bg-gradient-to-b from-emerald-900 to-emerald-950 text-white overflow-hidden text-center">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <div class="container mx-auto px-4 relative z-10">
+            <h1 class="text-3xl sm:text-4xl font-extrabold mb-3">Informasi Biaya & Persyaratan</h1>
+            <p class="text-emerald-200/90 text-sm sm:text-base max-w-2xl mx-auto">Transparan, akuntabel, dan berkah untuk kenyamanan menuntut ilmu para santri.</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 sm:px-6 -mt-8 pb-24 relative z-20">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+
+            <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-100 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center space-x-3 mb-5">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center text-emerald-600 text-lg">
+                            <i class="fa-solid fa-money-bill-wave"></i>
+                        </div>
+                        <h2 class="text-lg font-bold text-slate-800">BIAYA PENDAFTARAN</h2>
+                    </div>
+                    <ul class="space-y-3.5 mb-6 text-sm">
+                        <li class="flex justify-between border-b border-slate-100 pb-2.5 text-slate-600"><span>Uang Pangkal Pesantren</span> <span class="font-semibold text-slate-900">Rp 4.000.000</span></li>
+                        <li class="flex justify-between border-b border-slate-100 pb-2.5 text-slate-600"><span>Uang Pangkal Sekolah (SMP)</span> <span class="font-semibold text-slate-900">Rp 2.500.000</span></li>
+                        <li class="flex justify-between border-b border-slate-100 pb-2.5 text-slate-600"><span>Uang Pangkal Sekolah (SMA)</span> <span class="font-semibold text-slate-900">Rp 4.000.000</span></li>
+                        <li class="flex justify-between border-b border-slate-100 pb-2.5 text-slate-600"><span>Uang Gedung</span> <span class="font-semibold text-slate-900">Rp 7.000.000</span></li>
+                        <li class="flex justify-between border-b border-slate-100 pb-2.5 text-slate-600"><span>Fasilitas Belajar Santri</span> <span class="font-semibold text-slate-900">Rp 2.850.000</span></li>
+                        <li class="flex justify-between border-b border-slate-100 pb-2.5 text-slate-600"><span>Seragam</span> <span class="font-semibold text-slate-900">Rp 650.000</span></li>
+                        <li class="flex justify-between border-b border-slate-100 pb-2.5 text-slate-600"><span>TOTAL RINCIAN (SMP)</span> <span class="font-semibold text-slate-900">Rp 17.000.000</span></li>
+                        <li class="flex justify-between border-b border-slate-100 pb-2.5 text-slate-600"><span>TOTAL RINCIAN (SMA)</span> <span class="font-semibold text-slate-900">Rp 18.500.000</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-100 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center space-x-3 mb-5">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center text-emerald-600 text-lg">
+                            <i class="fa-solid fa-calendar-days"></i>
+                        </div>
+                        <h2 class="text-lg font-bold text-slate-800">Biaya Rutin Bulanan (Syahriah)</h2>
+                    </div>
+                    <ul class="space-y-3.5 mb-6 text-sm">
+                        <li class="flex justify-between border-b border-slate-100 pb-2.5 text-slate-600"><span>Makan</span> <span class="font-semibold text-slate-900">Rp 700.000</span></li>
+                        <li class="flex justify-between border-b border-slate-100 pb-2.5 text-slate-600"><span>Listrik, AC</span> <span class="font-semibold text-slate-900">Rp 250.000</span></li>
+                        <li class="flex justify-between border-b border-slate-100 pb-2.5 text-slate-600"><span>Kesehatan</span> <span class="font-semibold text-slate-900">Rp 20.000</span></li>
+                    <li class="flex justify-between border-b border-slate-100 pb-2.5 text-slate-600"><span>Kebersihan</span> <span class="font-semibold text-slate-900">Rp 20.000</span></li>
+                    <li class="flex justify-between border-b border-slate-100 pb-2.5 text-slate-600"><span>Dakwah</span> <span class="font-semibold text-slate-900">Rp 20.000</span></li>
+                    <li class="flex justify-between border-b border-slate-100 pb-2.5 text-slate-600"><span>Keamanan</span> <span class="font-semibold text-slate-900">Rp 20.000</span></li>
+                    <li class="flex justify-between border-b border-slate-100 pb-2.5 text-slate-600"><span>Olahraga</span> <span class="font-semibold text-slate-900">Rp 20.000</span></li>
+                    <li class="flex justify-between border-b border-slate-100 pb-2.5 text-slate-600"><span>Tarbiyah/Pendidikan</span> <span class="font-semibold text-slate-900">Rp 650.000</span></li>
+                    <li class="flex justify-between border-b border-slate-100 pb-2.5 text-slate-600"><span>TOTAL RINCIAN</span> <span class="font-semibold text-slate-900">Rp 1.700.000</span></li>
+                    </ul>
+                </div>
+                <div class="bg-amber-50 text-amber-800 font-bold text-center py-3 px-4 rounded-xl text-base border border-amber-100">
+                    Total / Bulan: Rp 1.700.000
+                </div>
+            </div>
+
+<div class="bg-white rounded-2xl p-6 shadow-md border border-slate-100 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center space-x-3 mb-5">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center text-emerald-600 text-lg">
+                            <i class="fa-solid fa-money-bill-wave"></i>
+                        </div>
+                        <h2 class="text-lg font-bold text-slate-800">BIAYA PER-EVENT</h2>
+                    </div>
+                    <ul class="space-y-3.5 mb-6 text-sm">
+                        <li class="flex justify-between border-b border-slate-100 pb-2.5 text-slate-600"><span>Biaya Formulir Pendaftaran</span> <span class="font-semibold text-slate-900">Rp 175.000</span></li>
+                        <li class="flex justify-between border-b border-slate-100 pb-2.5 text-slate-600"><span>Daftar Ulang Tahunan</span> <span class="font-semibold text-slate-900">Rp 1.000.000</span></li>
+                        <li class="flex justify-between border-b border-slate-100 pb-2.5 text-slate-600"><span>Daftar Ulang Naik Jenjang</span> <span class="font-semibold text-slate-900">Rp 7.500.000</span></li>
+                        <li class="flex justify-between border-b border-slate-100 pb-2.5 text-slate-600"><span>KAT Sekolah SMP</span> <span class="font-semibold text-slate-900">Kondisional</span></li>
+                        <li class="flex justify-between border-b border-slate-100 pb-2.5 text-slate-600"><span>KAT Sekolah SMA</span> <span class="font-semibold text-slate-900">Kondisional</span></li>
+                        <li class="flex justify-between border-b border-slate-100 pb-2.5 text-slate-600"><span>Ujian Formal</span> <span class="font-semibold text-slate-900">Kondisional</span></li>
+                        <li class="flex justify-between border-b border-slate-100 pb-2.5 text-slate-600"><span>Kitab Pelajaran/Tahun</span> <span class="font-semibold text-slate-900">Kondisional</span></li>
+                        <li class="flex justify-between border-b border-slate-100 pb-2.5 text-slate-600"><span>Patungan Qurban (Dzulhijjah)</span> <span class="font-semibold text-slate-900">Rp 100.000</span></li>
+                        <li class="flex justify-between border-b border-slate-100 pb-2.5 text-slate-600"><span>Bukber Dan Santunan (10 Muharram)</span> <span class="font-semibold text-slate-900">Rp 100.000</span></li>
+                        <li class="flex justify-between border-b border-slate-100 pb-2.5 text-slate-600"><span>Partisipasi Kemerdekaan NKRI</span> <span class="font-semibold text-slate-900">Rp 100.000</span></li>
+                        <li class="flex justify-between border-b border-slate-100 pb-2.5 text-slate-600"><span>Ujian Sem-1 (Rabi'ul Awwal)</span> <span class="font-semibold text-slate-900">Rp 200.000</span></li>
+                        <li class="flex justify-between border-b border-slate-100 pb-2.5 text-slate-600"><span>Partisipasi Maulid akbar</span> <span class="font-semibold text-slate-900">Rp 150.000</span></li>
+                        <li class="flex justify-between border-b border-slate-100 pb-2.5 text-slate-600"><span>ADM Liburan Maulid</span> <span class="font-semibold text-slate-900">Rp 50.000</span></li>
+                        <li class="flex justify-between border-b border-slate-100 pb-2.5 text-slate-600"><span>Ujian Sem-2 (Rajab)</span> <span class="font-semibold text-slate-900">Rp 200.000</span></li>
+                        <li class="flex justify-between border-b border-slate-100 pb-2.5 text-slate-600"><span>Gathering (Sya'ban)</span> <span class="font-semibold text-slate-900">Kondisional</span></li>
+                        <li class="flex justify-between border-b border-slate-100 pb-2.5 text-slate-600"><span>ADM Douroh Ramadhan</span> <span class="font-semibold text-slate-900">Rp 200.000</span></li>
+                        <li class="flex justify-between border-b border-slate-100 pb-2.5 text-slate-600"><span>Takjil Ramadhan</span> <span class="font-semibold text-slate-900">Rp 150.000</span></li>
+                        <li class="flex justify-between border-b border-slate-100 pb-2.5 text-slate-600"><span>Partisipasi Haul Abuya Hasan Baharun</span> <span class="font-semibold text-slate-900">Rp 100.000</span></li>
+                        <li class="flex justify-between border-b border-slate-100 pb-2.5 text-slate-600"><span>Partisipasi Haul Hubabah Fatmah Al Attas</span> <span class="font-semibold text-slate-900">Rp 100.000</span></li>
+                        <li class="flex justify-between border-b border-slate-100 pb-2.5 text-slate-600"><span>Partisipasi Haul Al Habib Musthofa Assegaf</span> <span class="font-semibold text-slate-900">Rp 100.000</span></li>
+                        <li class="flex justify-between border-b border-slate-100 pb-2.5 text-slate-600"><span>Patungan Haul Habibana Hasan Assegaf</span> <span class="font-semibold text-slate-900">Rp 100.000</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-100 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center space-x-3 mb-5">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center text-emerald-600 text-lg">
+                            <i class="fa-solid fa-file-invoice"></i>
+                        </div>
+                        <h2 class="text-lg font-bold text-slate-800">Administrasi & Dokumen</h2>
+                    </div>
+
+                    <h3 class="font-bold text-xs uppercase tracking-wider text-slate-400 mb-3">Syarat Daftar Ulang Berkas:</h3>
+                    <ul class="text-sm text-slate-600 space-y-2.5 mb-6">
+                        <li class="flex items-start"><i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-2.5 text-xs"></i><span>FotoCopy Ijazah (SD/SMP)</span></li>
+                        <li class="flex items-start"><i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-2.5 text-xs"></i><span>FotoCopy Akta Kelahiran</span></li>
+                        <li class="flex items-start"><i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-2.5 text-xs"></i><span>FotoCopy KK</span></li>
+                        <li class="flex items-start"><i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-2.5 text-xs"></i><span>FotoCopy Kartu NISN</span></li>
+                        <li class="flex items-start"><i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-2.5 text-xs"></i><span>FotoCopy KTP Orang Tua</span></li>
+                        <li class="flex items-start"><i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-2.5 text-xs"></i><span>FotoCopy Hasil Kelulusan</span></li>
+                        <li class="flex items-start"><i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-2.5 text-xs"></i><span>Foto 3x4 3 lembar</span></li> 
+                    </ul>
+
+                    <div class="p-4 bg-amber-50/60 border border-amber-100 rounded-xl">
+                        <h3 class="font-bold text-sm text-amber-900 mb-1 flex items-center"><i class="fa-solid fa-clock mr-2 text-xs"></i>Jam Layanan Kantor Tata Usaha:</h3>
+                        <p class="text-xs text-amber-800 font-semibold">Senin - Sabtu | Pukul 08.00 - 14.00 WIB</p>
+                        <p class="text-[11px] text-amber-600 mt-1.5">* Hari Jum'at dan Libur kantor tutup.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-100 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center space-x-3 mb-5">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center text-emerald-600 text-lg">
+                            <i class="fa-solid fa-file-signature"></i>
+                        </div>
+                        <h2 class="text-lg font-bold text-slate-800">Syarat Pendaftaran Utama</h2>
+                    </div>
+                    <ul class="space-y-3 text-sm text-slate-600">
+                        <li class="flex items-start"><i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-2.5 text-xs flex-shrink-0"></i><span>FotoCopy Ijazah (SD/SMP)</span></li>
+                        <li class="flex items-start"><i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-2.5 text-xs flex-shrink-0"></i><span>FotoCopy KK</span></li>
+                        <li class="flex items-start"><i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-2.5 text-xs flex-shrink-0"></i><span>FotoCopy Kartu NISN</span></li>
+                        <li class="flex items-start"><i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-2.5 text-xs flex-shrink-0"></i><span>FotoCopy KTP Orang Tua</span></li>
+                        <li class="flex items-start"><i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-2.5 text-xs flex-shrink-0"></i><span>FotoCopy Hasil Kelulusan</span></li>
+                        <li class="flex items-start"><i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-2.5 text-xs flex-shrink-0"></i><span>Foto 3x4 3 lembar</span></li>
+                    </ul>
+                </div>
+                <div class="mt-6 bg-emerald-50 text-emerald-800 font-bold text-center py-2.5 px-4 rounded-xl text-xs border border-emerald-100">
+                    Kuota Terbatas Setiap Angkatan
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-100 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center space-x-3 mb-5">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center text-emerald-600 text-lg">
+                            <i class="fa-solid fa-book-open-reader"></i>
+                        </div>
+                        <h2 class="text-lg font-bold text-slate-800">Materi Tes Seleksi Masuk</h2>
+                    </div>
+                    <ul class="space-y-3 text-sm text-slate-600">
+                        <li class="flex justify-between border-b border-slate-100 pb-2"><span>(Membaca Al-Qur'an, Bacaan Sholat, Do'a Harian)</span> <span class="font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded text-xs">Tes Lisan/Baca</span></li>
+                        <li class="flex justify-between border-b border-slate-100 pb-2"><span>(Al Fatihah, Surat-Surat Pendek)</span> <span class="font-semibold text-amber-700 bg-amber-50 px-2 py-0.5 rounded text-xs">Tes Tulis</span></li>
+                        <li class="flex justify-between border-b border-slate-100 pb-2"><span>Interview calon santri & wali santri</span> <span class="font-semibold text-blue-700 bg-blue-50 px-2 py-0.5 rounded text-xs">Interview</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-100 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center space-x-3 mb-5">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center text-emerald-600 text-lg">
+                            <i class="fa-solid fa-paste"></i>
+                        </div>
+                        <h2 class="text-lg font-bold text-slate-800">Berkas Tambahan Santri Mutasi</h2>
+                    </div>
+                    <ul class="space-y-2.5 text-sm text-slate-600">
+                        <li class="flex items-start"><i class="fa-solid fa-file-lines text-amber-500 mt-1 mr-2.5 text-xs flex-shrink-0"></i><span>Surat pindah dengan tanda tangan :
+                            <ul class="list-disc list-inside mt-1 text-xs text-amber-600">
+                                <li>Kepala Sekolah</li>
+                                <li>Pengawas Sekolah</li>
+                                <li>Suku dinas kota setempat</li>
+                            </ul>
+                        </span></li>
+                        <li class="flex items-start"><i class="fa-solid fa-file-lines text-amber-500 mt-1 mr-2.5 text-xs flex-shrink-0"></i><span>Raport Asli & Fotocpy</span></li>
+                        <li class="flex items-start"><i class="fa-solid fa-file-lines text-amber-500 mt-1 mr-2.5 text-xs flex-shrink-0"></i><span>Lembar NISN dari sekolah asal.</span></li>
+                        <li class="flex items-start"><i class="fa-solid fa-file-lines text-amber-500 mt-1 mr-2.5 text-xs flex-shrink-0"></i><span>Daftar Siswa (8355) yang berasal dari Dapodik/Emis.</span></li>
+                        <li class="flex items-start"><i class="fa-solid fa-file-lines text-amber-500 mt-1 mr-2.5 text-xs flex-shrink-0"></i><span>Ijin Oprasional (IJOP) sekolah asal</span></li>
+                        <li class="flex items-start"><i class="fa-solid fa-file-lines text-amber-500 mt-1 mr-2.5 text-xs flex-shrink-0"></i><span>Sertifikat akreditasi sekolah asal.</span></li>
+                        <li class="flex items-start"><i class="fa-solid  text-amber-500 mt-1 mr-2.5 text-xs flex-shrink-0"></i><span></span></li>
+                        <li class="flex items-start"><i class="fa-solid fa-file-lines text-amber-500 mt-1 mr-2.5 text-xs flex-shrink-0"></i><span>FotoCopy Ijazah</span></li>
+                        <li class="flex items-start"><i class="fa-solid fa-file-lines text-amber-500 mt-1 mr-2.5 text-xs flex-shrink-0"></i><span>FotoCopy SKL</span></li>
+                        <li class="flex items-start"><i class="fa-solid fa-file-lines text-amber-500 mt-1 mr-2.5 text-xs flex-shrink-0"></i><span>FotoCopy Akta Kelahiran</span></li>
+                        <li class="flex items-start"><i class="fa-solid fa-file-lines text-amber-500 mt-1 mr-2.5 text-xs flex-shrink-0"></i><span>FotoCopy Kartu Keluarga</span></li>
+                        <li class="flex items-start"><i class="fa-solid fa-file-lines text-amber-500 mt-1 mr-2.5 text-xs flex-shrink-0"></i><span>Materai 10.000.</span></li>
+                        <li class="flex items-start"><i class="fa-solid fa-file-lines text-amber-500 mt-1 mr-2.5 text-xs flex-shrink-0"></i><span>Biaya Administrasi Rp. 1.000.000</span></li>
+                    <strong>*Syarat tambahan ini berlaku jika calon santri adalah pindahan dari instansi pendidikan lain</strong>
+                    </ul>
+                </div> 
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-100 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center space-x-3 mb-5">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center text-emerald-600 text-lg">
+                            <i class="fa-solid fa-box-open"></i>
+                        </div>
+                        <h2 class="text-lg font-bold text-slate-800">Starterpack Santri Nurmus</h2>
+                    </div>
+                    <p class="text-xs text-slate-400 font-bold uppercase tracking-wider mb-2">Kelengkapan Pribadi yang Wajib Dibawa:</p>
+                    <ul class="grid grid-cols-2 gap-2.5 text-sm text-slate-600">
+                        <li class="flex items-center"><i class="fa-solid fa-shirt text-slate-400 mr-2 text-xs"></i>Gamis diutamakan Putih, Minimal 3 Pcs</li>
+                        <li class="flex items-center"><i class="fa-solid fa-soap text-slate-400 mr-2 text-xs"></i>Sabun Mandi</li>
+                        <li class="flex items-center"><i class="fa-solid fa-shirt text-slate-400 mr-2 text-xs"></i>Baju Muslim / Koko 4 Pcs</li>
+                        <li class="flex items-center"><i class="fa-solid fa-soap text-slate-400 mr-2 text-xs"></i>Sikat Gigi</li>
+                        <li class="flex items-center"><i class="fa-solid fa-shirt text-slate-400 mr-2 text-xs"></i>Peci, Kopiah putih 3</li>
+                        <li class="flex items-center"><i class="fa-solid fa-soap text-slate-400 mr-2 text-xs"></i>Pasta Gigi</li>
+                        <li class="flex items-center"><i class="fa-solid fa-shirt text-slate-400 mr-2 text-xs"></i>Sarung, Minimal 5 Pcs</li>
+                        <li class="flex items-center"><i class="fa-solid fa-soap text-slate-400 mr-2 text-xs"></i>Tempat Alat Mandi</li>
+                        <li class="flex items-center"><i class="fa-solid fa-shirt text-slate-400 mr-2 text-xs"></i>Kaos Dalam diutumakan yang Sopan/warna polos minimal 8Pcs</li>
+                        <li class="flex items-center"><i class="fa-solid fa-soap text-slate-400 mr-2 text-xs"></i>Handuk Minimal 2 Pcs</li>
+                        <li class="flex items-center"><i class="fa-solid fa-shirt text-slate-400 mr-2 text-xs"></i>Kaos Main 5 Pcs</li>
+                        <li class="flex items-center"><i class="fa-solid fa-soap text-slate-400 mr-2 text-xs"></i>Sisir</li>
+                        <li class="flex items-center"><i class="fa-solid fa-shirt text-slate-400 mr-2 text-xs"></i>Celana Training untuk tidur dan olahraga minimal 3 Pcs</li>
+                        <li class="flex items-center"><i class="fa-solid fa-soap text-slate-400 mr-2 text-xs"></i>Gunting Kuku</li>
+                        <li class="flex items-center"><i class="fa-solid fa-shirt text-slate-400 mr-2 text-xs"></i>Baju Olahraga</li>
+                        <li class="flex items-center"><i class="fa-solid fa-soap text-slate-400 mr-2 text-xs"></i>Cotton Bud (Pembersih Telinga)</li>
+                        <li class="flex items-center"><i class="fa-solid fa-shirt text-slate-400 mr-2 text-xs"></i>Selimut/Bed Cover</li>
+                        <li class="flex items-center"><i class="fa-solid  text-slate-400 mr-2 text-xs"></i></li>
+                        <li class="flex items-center"><i class="fa-solid fa-book text-slate-400 mr-2 text-xs"></i>Buku tulis 1 Pack</li>
+                        <li class="flex items-center"><i class="fa-solid  text-slate-400 mr-2 text-xs"></i></li>
+                        <li class="flex items-center"><i class="fa-solid fa-laptop text-slate-400 mr-2 text-xs"></i>1 Unit Laptop</li>
+                        <li class="flex items-center"><i class="fa-solid fa-shoe-prints text-slate-400 mr-2 text-xs"></i>Sepatu Olahraga</li>
+                        <li class="flex items-center"><i class="fa-solid  text-slate-400 mr-2 text-xs"></i></li>
+                        <li class="flex items-center"><i class="fa-solid fa-rocket text-slate-400 mr-2 text-xs"></i>Raket Badminton Jika Ada</li>
+                    </ul>
+                </div>
+                <div class="mt-4 p-3 bg-rose-50/60 border border-rose-100 rounded-xl text-[11px] text-rose-800">
+                    <strong>Larangan keras:</strong> Dilarang membawa Gadget/HP, Laptop (Kecuali SMK IT), Senjata Tajam, dan Media Elektronik lainnya.
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-100 md:col-span-2">
+                <div class="flex items-center space-x-3 mb-6">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center text-emerald-600 text-lg">
+                        <i class="fa-solid fa-building-user"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-lg font-bold text-slate-800">Fasilitas Kompleks Pesantren</h2>
+                        <p class="text-xs text-slate-400 font-medium">Infrastruktur utama penunjang kegiatan belajar-mengajar dan kenyamanan santri.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 text-center hover:border-emerald-200 transition-all group">
+                        <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center mx-auto mb-2 text-emerald-700 text-xl shadow-sm group-hover:scale-105 transition-transform"><i class="fa-solid fa-mosque"></i></div>
+                        <h4 class="font-bold text-sm text-slate-800">Masjid Utama</h4>
+                    </div>
+                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 text-center hover:border-emerald-200 transition-all group">
+                        <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center mx-auto mb-2 text-emerald-700 text-xl shadow-sm group-hover:scale-105 transition-transform"><i class="fa-solid fa-hotel"></i></div>
+                        <h4 class="font-bold text-sm text-slate-800">Asrama Santri</h4>
+                    </div>
+                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 text-center hover:border-emerald-200 transition-all group">
+                        <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center mx-auto mb-2 text-emerald-700 text-xl shadow-sm group-hover:scale-105 transition-transform"><i class="fa-solid fa-chalkboard-user"></i></div>
+                        <h4 class="font-bold text-sm text-slate-800">Ruang Kelas AC</h4>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+    <!-- FOOTER BOTTOM -->
+        <footer class="bg-white text-slate-600 pt-16 pb-8 border-t border-slate-100 text-sm">
+    <div class="container mx-auto px-4 sm:px-6">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-12">
+            
+            <div class="md:col-span-4 space-y-4">
+                <div class="flex items-center space-x-3">
+                    <img src="favicon.webp" alt="Rubath Logo" class="w-10 h-10 bg-emerald-50 rounded-xl object-cover shadow-sm flex-shrink-0" />
+                    <div class="flex flex-col">
+                        <span class="text-lg font-extrabold tracking-wider text-slate-900 leading-none mb-1">RUBATH NURUL MUSTHOFA</span>
+                        <span class="text-[10px] font-bold text-emerald-600 tracking-widest uppercase">DEPOK JAWA BARAT INDONESIA</span>
+                    </div>
+                </div>
+                <div class="border-l-2 border-emerald-500 pl-4 py-1 italic text-slate-500 max-w-sm">
+                    "Menempa generasi Qur'ani yang berakhlak mulia, unggul dalam ilmu, dan kuat dalam amalan." Menjadi pusat pendidikan Islam yang <span class="text-emerald-600 font-bold not-italic">BERKAH UNTUK SEMUA KALANGAN.</span>
+                </div>
+            </div>
+
+            <div class="md:col-span-2 space-y-3">
+                <h4 class="font-bold text-xs uppercase tracking-widest text-emerald-600">Navigasi</h4>
+                <ul class="space-y-2.5 font-medium">
+                    <li><a href="index.html#beranda" class="hover:text-emerald-600 transition-colors">Beranda</a></li>
+                    <li><a href="index.html#fitur" class="hover:text-emerald-600 transition-colors">Fitur</a></li>
+                    <li><a href="pengurus.html" class="hover:text-emerald-600 transition-colors">Pengurus</a></li>
+                    <li><a href="index.html#santri" class="hover:text-emerald-600 transition-colors">Santri</a></li>
+                    <li><a href="index.html#galeri" class="hover:text-emerald-600 transition-colors">Galeri</a></li>
+                    <li><a href="persyaratan&biaya.html" class="hover:text-emerald-600 transition-colors">Santri</a></li>
+                    <li><a href="fasilitas.html" class="hover:text-emerald-600 transition-colors">Fasilitas Pesantren</a></li>
+                </ul>
+            </div>
+
+            <div class="md:col-span-3 space-y-3">
+                <h4 class="font-bold text-xs uppercase tracking-widest text-emerald-600">Hubungi Kami</h4>
+                <ul class="space-y-4 font-medium">
+                    <li class="flex items-start space-x-3">
+                        <div class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center flex-shrink-0">
+                            <i class="fa-regular fa-comment-dots text-base"></i>
+                        </div>
+                        <span class="pt-1.5 hover:text-emerald-600 transition-colors cursor-pointer">+62 821 2526 8343 (Admin)</span>
+                    </li>
+                    <li class="flex items-start space-x-3">
+                        <div class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center flex-shrink-0">
+                            <i class="fa-solid fa-location-dot text-base"></i>
+                        </div>
+                        <span class="text-xs leading-relaxed text-slate-500 pt-0.5">
+                            Jl. Raya Cilodong No. 40, Kalibaru,<br>Depok, Jawa Barat 16413
+                        </span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="md:col-span-3 space-y-4">
+                <h4 class="font-bold text-xs uppercase tracking-widest text-emerald-600">Ikuti Dakwah Kami</h4>
+                <div class="flex space-x-3">
+                    <a href="#" class="w-11 h-11 border border-slate-200 rounded-2xl flex items-center justify-center text-slate-700 hover:border-emerald-600 hover:text-emerald-600 transition-all shadow-sm">
+                        <i class="fa-brands fa-instagram text-lg"></i>
+                    </a>
+                    <a href="https://youtube.com/@rubathnurulmusthofatv?si=URex0HLqAXIFnZmf" class="w-11 h-11 border border-slate-200 rounded-2xl flex items-center justify-center text-slate-700 hover:border-emerald-600 hover:text-emerald-600 transition-all shadow-sm">
+                        <i class="fa-brands fa-youtube text-lg"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@rubathnurulmusthofa__" class="w-11 h-11 border border-slate-200 rounded-2xl flex items-center justify-center text-slate-700 hover:border-emerald-600 hover:text-emerald-600 transition-all shadow-sm">
+                        <i class="fa-brands fa-tiktok text-lg"></i>
+                    </a>
+                    <a href="#" class="w-11 h-11 border border-slate-200 rounded-2xl flex items-center justify-center text-slate-700 hover:border-emerald-600 hover:text-emerald-600 transition-all shadow-sm">
+                        <i class="fa-regular fa-comment text-lg"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="pt-8 border-t border-slate-100 flex flex-col sm:flex-row justify-between items-center text-[11px] font-bold uppercase tracking-wider text-slate-400 gap-4">
+            <div class="italic font-medium text-slate-400 normal-case">Membangun Umat, Menjaga Martabat.</div>
+            <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-6 text-center sm:text-right">
+                <span>© 2026 PONPES RUBATH NURUL MUSTHOFA DEPOK</span>
+                <span class="text-[10px] text-slate-1000 font-normal">MADE WITH val_bahsin</span>
+            </div>
+        </div>
+    </div>
+</footer>
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/6a7c5f3aab01cc1d4ca422b6/1jvqt803c';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
+</body>
+</html>

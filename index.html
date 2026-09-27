@@ -1,0 +1,529 @@
+﻿<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rubath Nurul Musthofa - Platform Edukasi Modern</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #ffffff;
+            color: #0f172a;
+            overflow-x: hidden;
+        }
+
+        @keyframes shimmerLoop {
+            0% { transform: translateX(-150%) skewX(-25deg); }
+            50% { transform: translateX(150%) skewX(-25deg); }
+            100% { transform: translateX(150%) skewX(-25deg); }
+        }
+
+        .shimmer-btn {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .shimmer-btn::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 200%; height: 100%;
+            background: linear-gradient(
+                to right, 
+                transparent, 
+                rgba(255, 255, 255, 0.3) 30%, 
+                rgba(255, 255, 255, 0.5) 50%, 
+                transparent 70%
+            );
+            transform: translateX(-150%) skewX(-25deg);
+            animation: shimmerLoop 3.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
+        
+        .shimmer-delay::after {
+            animation-delay: 1.75s;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        .typing-cursor::after {
+            content: '|';
+            margin-left: 4px;
+            color: #fde047;
+            display: inline-block;
+            font-weight: 300;
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes mobilePhotoFloat {
+            0%,
+            100% {
+                transform: scale(1) translate3d(0, 0, 0);
+            }
+            50% {
+                transform: scale(1.08) translate3d(0, -8px, 0);
+            }
+        }
+
+        @keyframes mobileTapPulse {
+            0% {
+                transform: scale(1);
+            }
+            45% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes mobileCardFloat {
+            0%,
+            100% {
+                transform: translate3d(0, 0, 0) scale(1);
+            }
+            50% {
+                transform: translate3d(0, -6px, 0) scale(1.01);
+            }
+        }
+
+        @media (hover: none) and (pointer: coarse) {
+            section#galeri .group {
+                touch-action: manipulation;
+            }
+
+            section#galeri .group img {
+                transform-origin: center;
+                will-change: transform;
+                animation: mobilePhotoFloat 6s ease-in-out infinite;
+            }
+
+            section#galeri .group:nth-child(2n) img {
+                animation-delay: 1s;
+            }
+
+            section#galeri .group:active img {
+                animation: mobileTapPulse 0.45s ease-out;
+            }
+
+            section#santri .mobile-tap-zoom,
+            section#pendiri .mobile-tap-zoom {
+                touch-action: manipulation;
+            }
+
+            section#santri .mobile-tap-zoom img,
+            section#pendiri .mobile-tap-zoom img {
+                transform-origin: center;
+                will-change: transform;
+                backface-visibility: hidden;
+                transform: translateZ(0);
+                transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1), filter 900ms cubic-bezier(0.22, 1, 0.36, 1);
+            }
+
+            section#santri .mobile-tap-zoom.zoomed img,
+            section#pendiri .mobile-tap-zoom.zoomed img {
+                transform: translateZ(0) scale(1.045);
+            }
+
+            section#pendiri .mobile-tap-zoom img {
+                filter: grayscale(100%);
+            }
+
+            section#pendiri .mobile-tap-zoom.zoomed img {
+                filter: grayscale(0%);
+            }
+        }
+    </style>
+</head>
+<body x-data="{ mobileMenuOpen: false }">
+
+    <!-- NAVBAR -->
+    <nav x-data="{ mobileMenuOpen: false, activeMenu: '', init() {
+            const path = window.location.pathname.split('/').pop();
+            const hash = window.location.hash || '#beranda';
+            if (!path || path === 'index.html') {
+                if (hash.includes('fitur')) this.activeMenu = 'fitur';
+                else if (hash.includes('santri')) this.activeMenu = 'santri';
+                else if (hash.includes('galeri')) this.activeMenu = 'galeri';
+                else this.activeMenu = 'beranda';
+            } else if (path === 'pengurus.html') this.activeMenu = 'pengurus';
+           else if (path === 'persyaratan-biaya.html') this.activeMenu = 'biaya';
+            else this.activeMenu = 'beranda';
+        } }" x-init="init()" class="fixed w-full top-0 left-0 z-50 bg-emerald-900/80 backdrop-blur-md py-4 shadow-sm border-b border-emerald-800">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="flex justify-between items-center">
+                <a href="index.html#beranda" class="flex items-center space-x-2 sm:space-x-3 group cursor-pointer max-w-[75%] sm:max-w-none">
+                    <img src="favicon.webp" alt="Rubath Logo" class="w-9 h-9 sm:w-10 sm:h-10 bg-white rounded-xl object-cover shadow-md group-hover:scale-110 transition-transform duration-300 flex-shrink-0" />
+                    <span class="text-base sm:text-xl font-extrabold tracking-wider text-white truncate">Rubath Nurul Musthofa</span>
+                </a>
+                
+                <div class="hidden md:flex space-x-1 font-semibold text-sm">
+                    <a href="index.html#beranda" @click="activeMenu='beranda'" :class="activeMenu === 'beranda' ? 'px-3.5 py-2 rounded-lg bg-white/20 text-white transition-all duration-300' : 'px-3.5 py-2 rounded-lg text-emerald-100 hover:bg-emerald-800/60 hover:text-white transition-all duration-300'">Beranda</a>
+                    <a href="index.html#fitur" @click="activeMenu='fitur'" :class="activeMenu === 'fitur' ? 'px-3.5 py-2 rounded-lg bg-white/20 text-white transition-all duration-300' : 'px-3.5 py-2 rounded-lg text-emerald-100 hover:bg-emerald-800/60 hover:text-white transition-all duration-300'">Fitur</a>
+                    <a href="pengurus.html" @click="activeMenu='pengurus'" :class="activeMenu === 'pengurus' ? 'px-3.5 py-2 rounded-lg bg-white/20 text-white transition-all duration-300' : 'px-3.5 py-2 rounded-lg text-emerald-100 hover:bg-emerald-800/60 hover:text-white transition-all duration-300'">Pengurus</a>
+                    <a href="index.html#santri" @click="activeMenu='santri'" :class="activeMenu === 'santri' ? 'px-3.5 py-2 rounded-lg bg-white/20 text-white transition-all duration-300' : 'px-3.5 py-2 rounded-lg text-emerald-100 hover:bg-emerald-800/60 hover:text-white transition-all duration-300'">Santri</a>
+                    <a href="index.html#galeri" @click="activeMenu='galeri'" :class="activeMenu === 'galeri' ? 'px-3.5 py-2 rounded-lg bg-white/20 text-white transition-all duration-300' : 'px-3.5 py-2 rounded-lg text-emerald-100 hover:bg-emerald-800/60 hover:text-white transition-all duration-300'">Galeri</a>
+                    <a href="persyaratan&biaya.html" @click="activeMenu='biaya'" :class="activeMenu === 'biaya' ? 'px-3.5 py-2 rounded-lg bg-white/20 text-white transition-all duration-300' : 'px-3.5 py-2 rounded-lg text-emerald-100 hover:bg-emerald-800/60 hover:text-white transition-all duration-300'">Persyaratan & biaya</a>
+                    <a href="fasilitas.html" @click="activeMenu='fasilitas'; mobileMenuOpen=false" :class="activeMenu === 'fasilitas' ? 'px-3.5 py-2 rounded-lg bg-white/20 text-white transition-all duration-300' : 'px-3.5 py-2 rounded-lg text-emerald-100 hover:bg-emerald-800/60 hover:text-white transition-all duration-300'">Fasilitas Pesantren</a>
+                </div>
+                
+               <div class="hidden md:block">
+    <a href="https://wa.me/0881025832962?text=Halo%20Admin%2C%20saya%20ingin%20mendaftar%20sebagai%20santri%20baru.%20Berikut%20data%20diri%20saya%3A%0A%0A-%20Nama%20Lengkap%3A%20%0A-%20Tempat%2FTanggal%20Lahir%3A%20%0A-%20Jenis%20Kelamin%3A%20%0A-%20Nama%20Orang%20Tua%2FWali%3A%20%0A-%20Alamat%20Lengkap%3A%20%0A-%20No.%20HP%20Orang%20Tua%3A%20%0A-%20Pindahan%2FLulusan%20Dari%3A%20" target="_blank" class="inline-block">
+        <button class="bg-white text-emerald-900 font-bold px-6 py-2.5 rounded-full shadow-md hover:bg-emerald-50 hover:scale-105 active:scale-95 transition-all duration-300">
+            Masuk / Daftar
+        </button>
+    </a>
+</div>
+
+                <div class="flex md:hidden">
+                    <button @click="mobileMenuOpen = !mobileMenuOpen" type="button" class="text-emerald-100 hover:text-white focus:outline-none p-2 rounded-lg transition-colors" aria-label="Toggle Menu">
+                        <svg x-show="!mobileMenuOpen" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <svg x-show="mobileMenuOpen" style="display: none;" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div x-show="mobileMenuOpen" 
+                 x-transition:enter="transition ease-out duration-300 transform"
+                 x-transition:enter-start="opacity-0 -translate-y-4"
+                 x-transition:enter-end="opacity-100 translate-y-0"
+                 x-transition:leave="transition ease-in duration-200 transform"
+                 x-transition:leave-start="opacity-100 translate-y-0"
+                 x-transition:leave-end="opacity-0 -translate-y-4"
+                 class="md:hidden mt-4 mx-1 pt-4 rounded-3xl border border-emerald-800/40 bg-emerald-900/90 text-white backdrop-blur-xl shadow-2xl ring-1 ring-black/10 overflow-hidden flex flex-col space-y-2 font-semibold text-sm"
+                 style="display: none;">
+                <a href="index.html#beranda" @click="activeMenu='beranda'; mobileMenuOpen=false" :class="activeMenu === 'beranda' ? 'px-4 py-3 rounded-xl bg-white/20 text-white transition-all' : 'px-4 py-3 rounded-xl text-emerald-100 bg-emerald-950/30 hover:bg-emerald-800/60 hover:text-white transition-all'"> <i class="fa-solid fa-house mr-2 opacity-70"></i>Beranda</a>
+                <a href="index.html#fitur" @click="activeMenu='fitur'; mobileMenuOpen=false" :class="activeMenu === 'fitur' ? 'px-4 py-3 rounded-xl bg-white/20 text-white transition-all' : 'px-4 py-3 rounded-xl text-emerald-100 bg-emerald-950/30 hover:bg-emerald-800/60 hover:text-white transition-all'"> <i class="fa-solid fa-star mr-2 opacity-70"></i>Fitur</a>
+                <a href="pengurus.html" @click="activeMenu='pengurus'; mobileMenuOpen=false" :class="activeMenu === 'pengurus' ? 'px-4 py-3 rounded-xl bg-white/20 text-white transition-all' : 'px-4 py-3 rounded-xl text-emerald-100 bg-emerald-950/30 hover:bg-emerald-800/60 hover:text-white transition-all'"> <i class="fa-solid fa-users mr-2 opacity-70"></i>Struktur Pengurus</a>
+                <a href="index.html#santri" @click="activeMenu='santri'; mobileMenuOpen=false" :class="activeMenu === 'santri' ? 'px-4 py-3 rounded-xl bg-white/20 text-white transition-all' : 'px-4 py-3 rounded-xl text-emerald-100 bg-emerald-950/30 hover:bg-emerald-800/60 hover:text-white transition-all'"> <i class="fa-solid fa-user-graduate mr-2 opacity-70"></i>Santri Terbaik</a>
+                <a href="index.html#galeri" @click="activeMenu='galeri'; mobileMenuOpen=false" :class="activeMenu === 'galeri' ? 'px-4 py-3 rounded-xl bg-white/20 text-white transition-all' : 'px-4 py-3 rounded-xl text-emerald-100 bg-emerald-950/30 hover:bg-emerald-800/60 hover:text-white transition-all'"> <i class="fa-solid fa-images mr-2 opacity-70"></i>Galeri</a>
+                <a href="persyaratan&biaya.html" @click="activeMenu='biaya'; mobileMenuOpen=false" :class="activeMenu === 'biaya' ? 'px-4 py-3 rounded-xl bg-white/20 text-white transition-all' : 'px-4 py-3 rounded-xl text-emerald-100 bg-emerald-950/30 hover:bg-emerald-800/60 hover:text-white transition-all'"> <i class="fa-solid fa-money-bill-wave mr-2 opacity-70"></i>Syarat & biaya</a>
+                <a href="fasilitas.html" @click="activeMenu='fasilitas'; mobileMenuOpen=false" :class="activeMenu === 'fasilitas' ? 'px-4 py-3 rounded-xl bg-white/20 text-white transition-all' : 'px-4 py-3 rounded-xl text-emerald-100 bg-emerald-950/30 hover:bg-emerald-800/60 hover:text-white transition-all'"> <i class="fa-solid fa-building mr-2 opacity-70"></i>Fasilitas Pesantren</a>
+                <div class="pt-2">
+                    <button class="w-full bg-white text-emerald-900 font-bold py-3 rounded-xl shadow-md active:scale-98 transition-all">Masuk / Daftar</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HEADER -->
+    <header id="beranda" x-data="{ animate: false }" x-init="setTimeout(() => animate = true, 50)" class="relative min-h-screen flex items-center justify-center pt-28 pb-16 overflow-hidden bg-emerald-900 text-white">
+        
+        <!-- LAYER FOTO BACKGROUND & OVERLAY -->
+        <div class="absolute inset-0 z-0" aria-hidden="true" style="background-image: linear-gradient(rgba(4,120,87,0.7), rgba(4,120,87,0.7)), url('pondokfavicon.webp'); background-size: cover; background-position: center; background-repeat: no-repeat;"></div>
+        <!-- Deskripsi untuk screen reader -->
+        <p class="sr-only">Gambar latar pondok (pondokfavicon.webp) dengan overlay hijau transparan.</p>
+
+        <!-- Efek Ornamen Lingkaran Blur -->
+        <div class="absolute w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] rounded-full bg-emerald-800/40 -top-20 -left-20 blur-3xl z-1"></div>
+        
+        <!-- KONTEN UTAMA -->
+        <div class="container mx-auto px-5 text-center z-10" x-show="animate" x-transition:enter="transition ease-out duration-800 transform" x-transition:enter-start="opacity-0 translate-y-6" x-transition:enter-end="opacity-100 translate-y-0" style="display: none;">
+            <div>
+                <span class="inline-block bg-emerald-800/80 border border-emerald-700 text-emerald-300 text-[10px] sm:text-xs font-bold px-3.5 py-1.5 rounded-full uppercase tracking-widest mb-6">Pendaftaran Tahun Ajaran Baru</span>
+            </div>
+            <h1 x-data="{ 
+                    fullText: 'Selamat Datang di \nPortal Resmi \nRubath Nurul Musthofa', 
+                    displayedText: '',
+                    typeText() {
+                        let i = 0;
+                        let interval = setInterval(() => {
+                            if (i < this.fullText.length) {
+                                if (this.fullText.charAt(i) === '\n') { this.displayedText += '<br>'; } 
+                                else { this.displayedText += this.fullText.charAt(i); }
+                                i++;
+                            } else { clearInterval(interval); }
+                        }, 90);
+                    }
+                }" x-init="setTimeout(() => typeText(), 400)" class="inline-block text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight mb-5 min-h-[7.5rem] sm:min-h-[9rem] md:min-h-[14rem]">
+                <span class="bg-gradient-to-r from-yellow-300 via-emerald-100 to-white bg-clip-text text-transparent typing-cursor" x-html="displayedText"></span>
+            </h1>
+            <p class="text-emerald-100/80 max-w-xl mx-auto text-sm sm:text-base md:text-lg mb-8 leading-relaxed px-2">
+                Platform ekosistem digital terintegrasi untuk kemudahan akses informasi akademik, pendaftaran santri baru, dan manajemen pendidikan modern yang adaptif.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-3.5 max-w-xs sm:max-w-none mx-auto w-full">
+                <button class="shimmer-btn w-full sm:w-auto bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-extrabold px-7 py-3.5 rounded-xl shadow-md text-sm sm:text-base transition-all duration-300 cursor-pointer text-center">
+                    <span class="flex items-center justify-center tracking-wide drop-shadow-[0_1px_1.5px_rgba(0,0,0,0.4)]">Daftar Sekarang <i class="fa-solid fa-arrow-right ml-2 text-xs"></i></span>
+                </button>
+                <a href="#pendaftaran-info" class="shimmer-btn shimmer-delay w-full sm:w-auto bg-emerald-800/40 hover:bg-emerald-800/70 border border-emerald-700/60 text-white font-bold px-7 py-3.5 rounded-xl text-sm sm:text-base transition-all duration-300 cursor-pointer flex items-center justify-center">
+                    Panduan Pendaftaran
+                </a>
+            </div>
+        </div>
+    </header>
+
+<section id="pendiri" class="py-20 bg-slate-50 relative overflow-hidden">
+        <div class="absolute w-[250px] h-[250px] rounded-full bg-emerald-100/50 -bottom-10 -right-10 blur-2xl pointer-events-none"></div>
+        <div class="absolute w-[200px] h-[200px] rounded-full bg-amber-50 -top-10 -left-10 blur-2xl pointer-events-none"></div>
+
+        <div class="container mx-auto px-4 sm:px-6 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-emerald-700 text-xs sm:text-sm font-bold uppercase tracking-widest bg-emerald-50 border border-emerald-200 px-4 py-1.5 rounded-full inline-block mb-3">
+                    Uswatun Hasanah
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-4">
+                    Pendiri Rubath Nurul Musthofa
+                </h2>
+                <div class="h-1 w-20 bg-amber-500 mx-auto rounded-full mb-4"></div>
+                <p class="text-slate-600 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+                    Mengenal sosok keteladanan yang meletakkan batu pertama perjuangan, membawa visi pendidikan modern yang berasaskan akhlakul karimah.
+                </p>
+            </div>
+
+            <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-xl shadow-slate-200/50 overflow-hidden border border-slate-100">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-0">
+        
+        <div x-data="{ zoomed: false }" 
+             @click="zoomed = !zoomed" 
+             :class="zoomed ? 'zoomed' : ''" 
+             class="md:col-span-5 relative group mobile-tap-zoom overflow-hidden min-h-[350px] md:min-h-full cursor-pointer">
+            
+            <img src="habib hasan3 favicon.webp" 
+                 alt="Foto Pendiri Rubath Nurul Musthofa" 
+                 class="absolute inset-0 w-full h-full object-cover grayscale transition-all duration-1000 ease-in-out transform-gpu group-hover:scale-105 md:hover:grayscale-0"
+                 :class="zoomed ? 'grayscale-0' : 'grayscale'" />
+            
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent md:hidden"></div>
+        </div>
+
+        <div class="md:col-span-7 p-8 sm:p-12 flex flex-col justify-center bg-white">
+            <div class="mb-4">
+                <h3 class="text-2xl sm:text-3xl font-bold text-slate-800 tracking-tight">
+                    Ada'i ilallah Al Habib Hasan Bin Ja'far Assegaf
+                </h3>
+                <p class="text-amber-600 font-semibold text-sm mt-1 tracking-wide">
+                    Pendiri & Pengasuh Pertama Pondok Pesantren Rubath Nurul Musthofa
+                </p>
+            </div>
+            
+            <div class="w-12 h-[2px] bg-slate-200 mb-6"></div>
+            
+            <blockquote class="border-l-4 border-emerald-600 pl-4 italic text-slate-600 text-sm sm:text-base leading-relaxed mb-6 bg-slate-50 py-3 pr-3 rounded-r-xl">
+                "Baik Mati Gak Baik Mati Mendingan Jadi Orang Baik Biar Mati Nya Baik"
+            </blockquote>
+
+            <p class="text-slate-500 text-xs sm:text-sm leading-relaxed mb-6">
+                Beliau mendedikasikan seluruh hidupnya untuk dakwah dan pengembangan pendidikan Islam terpadu. Melalui rekam jejak perjuangannya, Rubath Nurul Musthofa bertransformasi menjadi wadah pencetak generasi unggul yang melek teknologi tanpa kehilangan akar spiritualitas santri.
+            </p>
+
+            <div class="flex items-center space-x-3 text-slate-400">
+            </div>
+        </div>
+
+    </div>
+</div>
+        </div>
+    </section>
+    
+    <main class="bg-white text-slate-900">
+        <!-- SECTION FITUR -->
+        <section id="fitur" class="py-16 sm:py-24 relative">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12 sm:mb-16">
+                    <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 mb-3">Kenapa Memilih Kami?</h2>
+                    <div class="w-16 h-1 bg-emerald-600 mx-auto rounded-full"></div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+                    <div class="bg-slate-50 border border-slate-100 p-6 sm:p-8 rounded-2xl hover:border-emerald-500/40 hover:shadow-xl hover:bg-white transition-all duration-500 group">
+                        <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center mb-5 group-hover:bg-emerald-600 group-hover:text-white transition-all duration-500 shadow-sm"><i class="fa-solid fa-star-and-crescent text-xl"></i></div>
+                        <h3 class="text-lg sm:text-xl font-bold mb-2.5 group-hover:text-emerald-600 transition-colors duration-300">Pendaftaran Mudah</h3>
+                        <p class="text-slate-500 text-xs sm:text-sm leading-relaxed">Alur pendaftaran santri baru dirancang ringkas, aman, dan dapat diakses kapan saja.</p>
+                    </div>
+                    <div class="bg-slate-50 border border-slate-100 p-6 sm:p-8 rounded-2xl hover:border-emerald-500/40 hover:shadow-xl hover:bg-white transition-all duration-500 group">
+                        <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center mb-5 group-hover:bg-emerald-600 group-hover:text-white transition-all duration-500 shadow-sm"><i class="fa-solid fa-mosque text-xl"></i></div>
+                        <h3 class="text-lg sm:text-xl font-bold mb-2.5 group-hover:text-emerald-600 transition-colors duration-300">Keamanan Data Amanah</h3>
+                        <p class="text-slate-500 text-xs sm:text-sm leading-relaxed">Didukung teknologi enkripsi modern untuk mengamankan data administrasi santri.</p>
+                    </div>
+                    <div class="bg-slate-50 border border-slate-100 p-6 sm:p-8 rounded-2xl hover:border-emerald-500/40 hover:shadow-xl hover:bg-white transition-all duration-500 group">
+                        <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center mb-5 group-hover:bg-emerald-600 group-hover:text-white transition-all duration-500 shadow-sm"><i class="fa-solid fa-hands-praying text-xl"></i></div>
+                        <h3 class="text-lg sm:text-xl font-bold mb-2.5 group-hover:text-emerald-600 transition-colors duration-300">Khidmah Pelayanan Istiqomah</h3>
+                        <p class="text-slate-500 text-xs sm:text-sm leading-relaxed">Panitia pendaftaran siap sedia membantu mengarahkan pengisian berkas Anda.</p>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION SANTRI TERBAIK -->
+        <section id="santri" class="py-16 sm:py-24">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <span class="text-emerald-600 font-bold text-xs tracking-widest uppercase">Pencapaian Luar Biasa</span>
+                    <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-1 mb-3">Santri Terbaik</h2>
+                    <div class="w-16 h-1 bg-emerald-500 mx-auto rounded-full"></div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+                    <div class="group bg-white rounded-2xl p-4 shadow-sm border border-slate-200/60 hover:shadow-xl transition-all duration-300">
+                        <div x-data="{ zoomed: false }" @click="zoomed = !zoomed" :class="zoomed ? 'zoomed' : ''" class="mobile-tap-zoom relative overflow-hidden rounded-xl aspect-[4/5] sm:aspect-[3/4] bg-slate-100 cursor-pointer">
+                            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=900&q=80" alt="Foto Fairuz Ghazalah" class="absolute inset-0 w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-emerald-950/90 via-emerald-950/25 to-transparent z-10"></div>
+                            <div class="absolute top-3 right-3 z-20 bg-white/90 backdrop-blur-md px-2.5 py-1 rounded-full"><span class="text-[9px] font-bold text-emerald-700"><i class="fa-solid fa-star mr-1"></i> TAHFIDZ</span></div>
+                            <div class="absolute bottom-4 left-4 right-4 z-20 text-white">
+                                <h4 class="text-lg font-bold">Fairuz Ghazalah</h4>
+                                <p class="text-emerald-300 text-[11px] font-medium">Hafal 30 Juz Al-Qur'an</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="group bg-white rounded-2xl p-4 shadow-sm border border-slate-200/60 hover:shadow-xl transition-all duration-300">
+                        <div x-data="{ zoomed: false }" @click="zoomed = !zoomed" :class="zoomed ? 'zoomed' : ''" class="mobile-tap-zoom relative overflow-hidden rounded-xl aspect-[4/5] sm:aspect-[3/4] bg-slate-100 cursor-pointer">
+                            <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=900&q=80" alt="Foto Muhammad Sulthon" class="absolute inset-0 w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-emerald-950/90 via-emerald-950/25 to-transparent z-10"></div>
+                            <div class="absolute top-3 right-3 z-20 bg-white/90 backdrop-blur-md px-2.5 py-1 rounded-full"><span class="text-[9px] font-bold text-emerald-700"><i class="fa-solid fa-trophy mr-1"></i> JUARA 1</span></div>
+                            <div class="absolute bottom-4 left-4 right-4 z-20 text-white">
+                                <h4 class="text-lg font-bold">Muhammad Sulthon</h4>
+                                <p class="text-emerald-300 text-[11px] font-medium">Lomba MQK Tingkat Nasional</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="group bg-white rounded-2xl p-4 shadow-sm border border-slate-200/60 hover:shadow-xl transition-all duration-300">
+                        <div x-data="{ zoomed: false }" @click="zoomed = !zoomed" :class="zoomed ? 'zoomed' : ''" class="mobile-tap-zoom relative overflow-hidden rounded-xl aspect-[4/5] sm:aspect-[3/4] bg-slate-100 cursor-pointer">
+                            <img src="https://images.unsplash.com/photo-1504593811423-6dd665756598?auto=format&fit=crop&w=900&q=80" alt="Foto Ziyad Al-Farabi" class="absolute inset-0 w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-emerald-950/90 via-emerald-950/25 to-transparent z-10"></div>
+                            <div class="absolute top-3 right-3 z-20 bg-white/90 backdrop-blur-md px-2.5 py-1 rounded-full"><span class="text-[9px] font-bold text-emerald-700"><i class="fa-solid fa-award mr-1"></i> AKADEMIK</span></div>
+                            <div class="absolute bottom-4 left-4 right-4 z-20 text-white">
+                                <h4 class="text-lg font-bold">Ziyad Al-Farabi</h4>
+                                <p class="text-emerald-300 text-[11px] font-medium">Lulusan Terbaik & Cumlaude</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER & GALERI SECTION DENGAN BG HIJAU -->
+    <div class="bg-emerald-900 text-white">
+        <section id="galeri" class="py-16 relative">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-2xl sm:text-3xl font-bold mb-3 text-white">Galeri Kegiatan</h2>
+                    <div class="w-16 h-1 bg-emerald-400 mx-auto rounded-full"></div>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3.5">
+                    <div class="relative overflow-hidden rounded-xl aspect-square bg-emerald-800 shadow-sm group">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-100 sm:opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 flex items-end p-3"><span class="text-[10px] sm:text-xs font-semibold text-emerald-300">Gedung Asrama Tampak Depan</span></div>
+                        <img src="pondokfavicon.webp" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" alt="Gedung">
+                    </div>
+                    <div class="relative overflow-hidden rounded-xl aspect-square bg-emerald-800 shadow-sm group">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-100 sm:opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 flex items-end p-3"><span class="text-[10px] sm:text-xs font-semibold text-emerald-300">Aktivitas Belajar</span></div>
+                        <img src="habibana2favicon.webp" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" alt="Belajar">
+                    </div>
+                    <div class="relative overflow-hidden rounded-xl aspect-square bg-emerald-800 shadow-sm group">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-100 sm:opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 flex items-end p-3"><span class="text-[10px] sm:text-xs font-semibold text-emerald-300">Festival Perayaan Idul Adha</span></div>
+                        <img src="backend.webp" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" alt="backend">
+                    </div>
+                    <div class="relative overflow-hidden rounded-xl aspect-square bg-emerald-800 shadow-sm group">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-100 sm:opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 flex items-end p-3"><span class="text-[10px] sm:text-xs font-semibold text-emerald-300">Pembacaan Maulid Shimtudduror</span></div>
+                        <img src="shimtudduror.webp" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" alt="Pembacaan Maulid Shimtudduror">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER BOTTOM -->
+        <footer class="bg-white text-slate-600 pt-16 pb-8 border-t border-slate-100 text-sm">
+    <div class="container mx-auto px-4 sm:px-6">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-12">
+            
+            <div class="md:col-span-4 space-y-4">
+                <div class="flex items-center space-x-3">
+                    <img src="favicon.webp" alt="Rubath Logo" class="w-10 h-10 bg-emerald-50 rounded-xl object-cover shadow-sm flex-shrink-0" />
+                    <div class="flex flex-col">
+                        <span class="text-lg font-extrabold tracking-wider text-slate-900 leading-none mb-1">RUBATH NURUL MUSTHOFA</span>
+                        <span class="text-[10px] font-bold text-emerald-600 tracking-widest uppercase">DEPOK JAWA BARAT INDONESIA</span>
+                    </div>
+                </div>
+                <div class="border-l-2 border-emerald-500 pl-4 py-1 italic text-slate-500 max-w-sm">
+                    "Menempa generasi Qur'ani yang berakhlak mulia, unggul dalam ilmu, dan kuat dalam amalan." Menjadi pusat pendidikan Islam yang <span class="text-emerald-600 font-bold not-italic">BERKAH UNTUK SEMUA KALANGAN.</span>
+                </div>
+            </div>
+
+            <div class="md:col-span-2 space-y-3">
+                <h4 class="font-bold text-xs uppercase tracking-widest text-emerald-600">Navigasi</h4>
+                <ul class="space-y-2.5 font-medium">
+                    <li><a href="index.html#beranda" class="hover:text-emerald-600 transition-colors">Beranda</a></li>
+                    <li><a href="index.html#fitur" class="hover:text-emerald-600 transition-colors">Fitur</a></li>
+                    <li><a href="pengurus.html" class="hover:text-emerald-600 transition-colors">Pengurus</a></li>
+                    <li><a href="index.html#santri" class="hover:text-emerald-600 transition-colors">Santri</a></li>
+                    <li><a href="index.html#galeri" class="hover:text-emerald-600 transition-colors">Galeri</a></li>
+                    <li><a href="persyaratan&biaya.html" class="hover:text-emerald-600 transition-colors">Persyaratan&Biaya</a></li>
+                    <li><a href="fasilitas.html" class="hover:text-emerald-600 transition-colors">Fasilitas Pesantren</a></li>
+                </ul>
+            </div>
+
+            <div class="md:col-span-3 space-y-3">
+                <h4 class="font-bold text-xs uppercase tracking-widest text-emerald-600">Hubungi Kami</h4>
+                <ul class="space-y-4 font-medium">
+                    <li class="flex items-start space-x-3">
+                        <div class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center flex-shrink-0">
+                            <i class="fa-regular fa-comment-dots text-base"></i>
+                        </div>
+                        <span class="pt-1.5 hover:text-emerald-600 transition-colors cursor-pointer">+62 821 2526 8343 (Admin)</span>
+                    </li>
+                    <li class="flex items-start space-x-3">
+                        <div class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center flex-shrink-0">
+                            <i class="fa-solid fa-location-dot text-base"></i>
+                        </div>
+                        <span class="text-xs leading-relaxed text-slate-500 pt-0.5">
+                            Jl. Raya Cilodong No. 40, Kalibaru,<br>Depok, Jawa Barat 16413
+                        </span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="md:col-span-3 space-y-4">
+                <h4 class="font-bold text-xs uppercase tracking-widest text-emerald-600">Ikuti Dakwah Kami</h4>
+                <div class="flex space-x-3">
+                    <a href="#" class="w-11 h-11 border border-slate-200 rounded-2xl flex items-center justify-center text-slate-700 hover:border-emerald-600 hover:text-emerald-600 transition-all shadow-sm">
+                        <i class="fa-brands fa-instagram text-lg"></i>
+                    </a>
+                    <a href="https://youtube.com/@rubathnurulmusthofatv?si=URex0HLqAXIFnZmf" class="w-11 h-11 border border-slate-200 rounded-2xl flex items-center justify-center text-slate-700 hover:border-emerald-600 hover:text-emerald-600 transition-all shadow-sm">
+                        <i class="fa-brands fa-youtube text-lg"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@rubathnurulmusthofa__" class="w-11 h-11 border border-slate-200 rounded-2xl flex items-center justify-center text-slate-700 hover:border-emerald-600 hover:text-emerald-600 transition-all shadow-sm">
+                        <i class="fa-brands fa-tiktok text-lg"></i>
+                    </a>
+                    <a href="#" class="w-11 h-11 border border-slate-200 rounded-2xl flex items-center justify-center text-slate-700 hover:border-emerald-600 hover:text-emerald-600 transition-all shadow-sm">
+                        <i class="fa-regular fa-comment text-lg"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="pt-8 border-t border-slate-100 flex flex-col sm:flex-row justify-between items-center text-[11px] font-bold uppercase tracking-wider text-slate-400 gap-4">
+            <div class="italic font-medium text-slate-400 normal-case">Membangun Umat, Menjaga Martabat.</div>
+            <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-6 text-center sm:text-right">
+                <span>© 2026 PONPES RUBATH NURUL MUSTHOFA DEPOK</span>
+                <span class="text-[10px] text-slate-1000 font-normal">MADE WITH val_bahsin</span>
+            </div>
+        </div>
+    </div>
+</footer>
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/6a7c5f3aab01cc1d4ca422b6/1jvqt803c';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
+</body>
+</html>

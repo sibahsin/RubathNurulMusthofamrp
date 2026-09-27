@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fasilitas Pesantren - Rubath Nurul Musthofa</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        @keyframes shimmerLoop {
+            0% { transform: translateX(-150%) skewX(-25deg); }
+            50% { transform: translateX(150%) skewX(-25deg); }
+            100% { transform: translateX(150%) skewX(-25deg); }
+        }
+
+        .shimmer-btn {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .shimmer-btn::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 200%; height: 100%;
+            background: linear-gradient(
+                to right, 
+                transparent, 
+                rgba(255, 255, 255, 0.3) 30%, 
+                rgba(255, 255, 255, 0.5) 50%, 
+                transparent 70%
+            );
+            transform: translateX(-150%) skewX(-25deg);
+            animation: shimmerLoop 3.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 overflow-x-hidden" x-data="{ mobileMenuOpen: false }">
+
+    <nav x-data="{ activeMenu: 'fasilitas', init() {
+            const path = window.location.pathname.split('/').pop();
+            if (path === 'fasilitas.html') this.activeMenu = 'fasilitas';
+        } }" x-init="init()" class="fixed w-full top-0 left-0 z-50 bg-emerald-900/90 backdrop-blur-md py-4 shadow-md border-b border-emerald-800">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="flex justify-between items-center">
+                <a href="index.html#beranda" class="flex items-center space-x-2 sm:space-x-3 group cursor-pointer max-w-[75%] sm:max-w-none">
+                    <img src="favicon.webp" alt="Rubath Logo" class="w-9 h-9 sm:w-10 sm:h-10 bg-white rounded-xl object-cover shadow-md group-hover:scale-110 transition-transform duration-300 flex-shrink-0" />
+                    <span class="text-base sm:text-xl font-extrabold tracking-wider text-white truncate">Rubath Nurul Musthofa</span>
+                </a>
+                
+                <div class="hidden md:flex space-x-1 font-semibold text-sm">
+                    <a href="index.html#beranda" @click="activeMenu='beranda'" :class="activeMenu === 'beranda' ? 'px-3.5 py-2 rounded-lg bg-white/20 text-white transition-all duration-300' : 'px-3.5 py-2 rounded-lg text-emerald-100 hover:bg-emerald-800/60 hover:text-white transition-all duration-300'">Beranda</a>
+                    <a href="index.html#fitur" @click="activeMenu='fitur'" :class="activeMenu === 'fitur' ? 'px-3.5 py-2 rounded-lg bg-white/20 text-white transition-all duration-300' : 'px-3.5 py-2 rounded-lg text-emerald-100 hover:bg-emerald-800/60 hover:text-white transition-all duration-300'">Fitur</a>
+                    <a href="fasilitas.html" @click="activeMenu='fasilitas pesantren'" :class="activeMenu === 'fasilitas pesantren' ? 'px-3.5 py-2 rounded-lg bg-white/20 text-white transition-all duration-300' : 'px-3.5 py-2 rounded-lg text-emerald-100 hover:bg-emerald-800/60 hover:text-white transition-all duration-300'">Fasilitas</a>
+                    <a href="pengurus.html" @click="activeMenu='pengurus'" :class="activeMenu === 'pengurus' ? 'px-3.5 py-2 rounded-lg bg-white/20 text-white transition-all duration-300' : 'px-3.5 py-2 rounded-lg text-emerald-100 hover:bg-emerald-800/60 hover:text-white transition-all duration-300'">Pengurus</a>
+                    <a href="index.html#santri" @click="activeMenu='santri'" :class="activeMenu === 'santri' ? 'px-3.5 py-2 rounded-lg bg-white/20 text-white transition-all duration-300' : 'px-3.5 py-2 rounded-lg text-emerald-100 hover:bg-emerald-800/60 hover:text-white transition-all duration-300'">Santri</a>
+                    <a href="index.html#galeri" @click="activeMenu='galeri'" :class="activeMenu === 'galeri' ? 'px-3.5 py-2 rounded-lg bg-white/20 text-white transition-all duration-300' : 'px-3.5 py-2 rounded-lg text-emerald-100 hover:bg-emerald-800/60 hover:text-white transition-all duration-300'">Galeri</a>
+                    <a href="persyaratan&biaya.html" @click="activeMenu='biaya'" :class="activeMenu === 'biaya' ? 'px-3.5 py-2 rounded-lg bg-white/20 text-white transition-all duration-300' : 'px-3.5 py-2 rounded-lg text-emerald-100 hover:bg-emerald-800/60 hover:text-white transition-all duration-300'">Persyaratan & Biaya</a>
+                </div>
+                
+                <div class="hidden md:block">
+                    <button class="bg-white text-emerald-900 font-bold px-6 py-2.5 rounded-full shadow-md hover:bg-emerald-50 hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer">
+                        Masuk / Daftar
+                    </button>
+                </div>
+
+                <div class="flex md:hidden">
+                    <button @click="mobileMenuOpen = !mobileMenuOpen" type="button" class="text-emerald-100 hover:text-white focus:outline-none p-2 rounded-lg transition-colors cursor-pointer" aria-label="Toggle Menu">
+                        <svg x-show="!mobileMenuOpen" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <svg x-show="mobileMenuOpen" style="display: none;" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div x-show="mobileMenuOpen" 
+                 x-transition:enter="transition ease-out duration-300 transform"
+                 x-transition:enter-start="opacity-0 -translate-y-4"
+                 x-transition:enter-end="opacity-100 translate-y-0"
+                 x-transition:leave="transition ease-in duration-200 transform"
+                 x-transition:leave-start="opacity-100 translate-y-0"
+                 x-transition:leave-end="opacity-0 -translate-y-4"
+                 class="md:hidden mt-4 mx-1 pt-4 rounded-3xl border border-emerald-800/40 bg-emerald-900/90 text-white backdrop-blur-xl shadow-2xl ring-1 ring-black/10 overflow-hidden flex flex-col space-y-2 font-semibold text-sm"
+                 style="display: none;">
+                <a href="index.html#beranda" @click="activeMenu='beranda'; mobileMenuOpen=false" :class="activeMenu === 'beranda' ? 'px-4 py-3 rounded-xl bg-white/20 text-white transition-all' : 'px-4 py-3 rounded-xl text-emerald-100 bg-emerald-950/30 hover:bg-emerald-800/60 hover:text-white transition-all'"><i class="fa-solid fa-house mr-2 opacity-70"></i>Beranda</a>
+                <a href="index.html#fitur" @click="activeMenu='fitur'; mobileMenuOpen=false" :class="activeMenu === 'fitur' ? 'px-4 py-3 rounded-xl bg-white/20 text-white transition-all' : 'px-4 py-3 rounded-xl text-emerald-100 bg-emerald-950/30 hover:bg-emerald-800/60 hover:text-white transition-all'"><i class="fa-solid fa-layer-group mr-2 opacity-70"></i>Fitur</a>
+                <a href="pengurus.html" @click="activeMenu='pengurus'; mobileMenuOpen=false" :class="activeMenu === 'pengurus' ? 'px-4 py-3 rounded-xl bg-white/20 text-white transition-all' : 'px-4 py-3 rounded-xl text-emerald-100 bg-emerald-950/30 hover:bg-emerald-800/60 hover:text-white transition-all'"><i class="fa-solid fa-users mr-2 opacity-70"></i>Pengurus</a>
+                <a href="index.html#santri" @click="activeMenu='santri'; mobileMenuOpen=false" :class="activeMenu === 'santri' ? 'px-4 py-3 rounded-xl bg-white/20 text-white transition-all' : 'px-4 py-3 rounded-xl text-emerald-100 bg-emerald-950/30 hover:bg-emerald-800/60 hover:text-white transition-all'"><i class="fa-solid fa-graduation-cap mr-2 opacity-70"></i>Santri</a>
+                <a href="index.html#galeri" @click="activeMenu='galeri'; mobileMenuOpen=false" :class="activeMenu === 'galeri' ? 'px-4 py-3 rounded-xl bg-white/20 text-white transition-all' : 'px-4 py-3 rounded-xl text-emerald-100 bg-emerald-950/30 hover:bg-emerald-800/60 hover:text-white transition-all'"><i class="fa-solid fa-images mr-2 opacity-70"></i>Galeri</a>
+                <a href="persyaratan&biaya.html" @click="activeMenu='biaya'; mobileMenuOpen=false" :class="activeMenu === 'biaya' ? 'px-4 py-3 rounded-xl bg-white/20 text-white transition-all' : 'px-4 py-3 rounded-xl text-emerald-100 bg-emerald-950/30 hover:bg-emerald-800/60 hover:text-white transition-all'"><i class="fa-solid fa-money-bill-wave mr-2 opacity-70"></i>Persyaratan & Biaya</a>
+                <a href="fasilitas.html" @click="activeMenu='fasilitas'; mobileMenuOpen=false" :class="activeMenu === 'fasilitas' ? 'px-4 py-3 rounded-xl bg-white/20 text-white transition-all' : 'px-4 py-3 rounded-xl text-emerald-100 bg-emerald-950/30 hover:bg-emerald-800/60 hover:text-white transition-all'"><i class="fa-solid fa-building mr-2 opacity-70"></i>Fasilitas Pesantren</a>
+
+                <div class="pt-2">
+                    <button class="w-full bg-white text-emerald-900 font-bold px-6 py-3 rounded-xl shadow-md hover:bg-emerald-50 active:scale-95 transition-all duration-300 cursor-pointer">
+                        Masuk / Daftar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="relative pt-32 pb-16 bg-gradient-to-b from-emerald-900 to-emerald-950 text-white overflow-hidden text-center">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <div class="container mx-auto px-4 relative z-10">
+            <h1 class="text-3xl sm:text-4xl font-extrabold mb-3">Fasilitas Rubath Nurul Musthofa</h1>
+            <p class="text-emerald-200/90 text-sm sm:text-base max-w-2xl mx-auto">Sarana pendukung terbaik guna menunjang kenyamanan beribadah dan kegiatan belajar mengajar santri.</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 sm:px-6 -mt-8 pb-24 relative z-20">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+
+            <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-100 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center space-x-3 mb-5">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center text-emerald-600 text-lg">
+                            <i class="fa-solid fa-bed"></i>
+                        </div>
+                        <h2 class="text-lg font-bold text-slate-800">ASRAMA & AKOMODASI</h2>
+                    </div>
+                    <ul class="space-y-3.5 mb-6 text-sm text-slate-600">
+                        <li class="flex justify-between border-b border-slate-100 pb-2.5"><span>Kamar Tidur Santri Nyaman</span> <span class="font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded text-xs">Full AC</span></li>
+                        <li class="flex justify-between border-b border-slate-100 pb-2.5"><span>Ranjang Tingkat 2 & Kasur Individu</span> <span class="font-semibold text-slate-900">Tersedia</span></li>
+                        <li class="flex justify-between border-b border-slate-100 pb-2.5"><span>Lemari Pakaian/Kitab Pribadi</span> <span class="font-semibold text-slate-900">Per Santri</span></li>
+                        <li class="flex justify-between border-b border-slate-100 pb-2.5"><span>Kamar Mandi & Toilet Bersih</span> <span class="font-semibold text-slate-900">Rasio Proporsional</span></li>
+                        <li class="flex justify-between border-b border-slate-100 pb-2.5"><span>Layanan Laundry Pakaian</span> <span class="font-semibold text-slate-900">Termasuk Syahriah</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-100 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center space-x-3 mb-5">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center text-emerald-600 text-lg">
+                            <i class="fa-solid fa-mosque"></i>
+                        </div>
+                        <h2 class="text-lg font-bold text-slate-800">IBADAH & PENDIDIKAN</h2>
+                    </div>
+                    <ul class="space-y-3.5 mb-6 text-sm text-slate-600">
+                        <li class="flex justify-between border-b border-slate-100 pb-2.5"><span>Masjid Utama</span> <span class="font-semibold text-slate-900">Pusat Ibadah</span></li>
+                        <li class="flex justify-between border-b border-slate-100 pb-2.5"><span>Ruang Kelas Belajar (SMP & SMA)</span> <span class="font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded text-xs">Tidak kondusif Dan Panas</span></li>
+                        <li class="flex justify-between border-b border-slate-100 pb-2.5"><span>Perpustakaan Kitab & Buku</span> <span class="font-semibold text-slate-900">Lengkap</span></li>
+                        <li class="flex justify-between border-b border-slate-100 pb-2.5"><span>Auditorium / Aula Pertemuan</span> <span class="font-semibold text-slate-900">Kapasitas Besar</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-100 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center space-x-3 mb-5">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center text-emerald-600 text-lg">
+                            <i class="fa-solid fa-heart-pulse"></i>
+                        </div>
+                        <h2 class="text-lg font-bold text-slate-800">KESEHATAN & OLAHRAGA</h2>
+                    </div>
+                    <ul class="space-y-3.5 mb-6 text-sm text-slate-600">
+                        <li class="flex justify-between border-b border-slate-100 pb-2.5"><span>Pos Kesehatan Pesantren (Poskestren)</span> <span class="font-semibold text-slate-900">P3K & Obat Standard</span></li>
+                        <li class="flex justify-between border-b border-slate-100 pb-2.5"><span>Lapangan olahraga</span> <span class="font-semibold text-slate-900">Area Olahraga</span></li>
+                    </ul>
+                </div>
+                <div class="bg-amber-50 text-amber-800 font-bold text-center py-3 px-4 rounded-xl text-sm border border-amber-100">
+                    <i class="fa-solid fa-shield-halved mr-2"></i>Kesehatan & Keselamatan Santri Diprioritaskan
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-100 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center space-x-3 mb-5">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center text-emerald-600 text-lg">
+                            <i class="fa-solid fa-utensils"></i>
+                        </div>
+                        <h2 class="text-lg font-bold text-slate-800">KONSUMSI & LAYANAN UMUM</h2>
+                    </div>
+                    <ul class="space-y-3.5 mb-6 text-sm text-slate-600">
+                        <li class="flex justify-between border-b border-slate-100 pb-2.5"><span>Dapur Bersih & Steril</span> <span class="font-semibold text-slate-900">Standard Higienis</span></li>
+                        <li class="flex justify-between border-b border-slate-100 pb-2.5"><span>Menu Makanan Bergizi</span> <span class="font-semibold text-slate-900">3x Sehari</span></li>
+                        <li class="flex justify-between border-b border-slate-100 pb-2.5"><span>Air Minum Isi Ulang Steril</span> <span class="font-semibold text-slate-900">Gratis & Melimpah</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-100 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center space-x-3 mb-5">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center text-emerald-600 text-lg">
+                            <i class="fa-solid fa-shield"></i>
+                        </div>
+                        <h2 class="text-lg font-bold text-slate-800">SISTEM KEAMANAN</h2>
+                    </div>
+                    <ul class="space-y-3 text-sm text-slate-600">
+                        <li class="flex items-start"><i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-2.5 text-xs flex-shrink-0"></i><span>Sistem Keamanan Log-in One-Gate System</span></li>
+                        <li class="flex items-start"><i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-2.5 text-xs flex-shrink-0"></i><span>Petugas Keamanan (Security) Siaga 24 Jam</span></li>
+                        <li class="flex items-start"><i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-2.5 text-xs flex-shrink-0"></i><span>Kamera Pengawas (CCTV) di Titik-Titik Krusial</span></li>
+                        <li class="flex items-start"><i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-2.5 text-xs flex-shrink-0"></i><span>Pagar Depan Pusat Kompleks Pesantren Aman</span></li>
+                    </ul>
+                </div>
+                <div class="mt-6 bg-emerald-50 text-emerald-800 font-bold text-center py-2.5 px-4 rounded-xl text-xs border border-emerald-100">
+                    Lingkungan Pesantren Aman, Tenang, dan Kondusif
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-100 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center space-x-3 mb-5">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center text-emerald-600 text-lg">
+                            <i class="fa-solid fa-address-card"></i>
+                        </div>
+                        <h2 class="text-lg font-bold text-slate-800">LAYANAN WALI SANTRI</h2>
+                    </div>
+                    <div class="space-y-3 text-sm text-slate-600 mb-4">
+                        <p class="text-xs text-slate-400 font-bold uppercase tracking-wider">Fasilitas Komunikasi & Kunjungan:</p>
+                        <li class="flex justify-between border-b border-slate-100 pb-2"><span>Aplikasi Monitoring Santri</span> <span class="font-semibold text-blue-700 bg-blue-50 px-2 py-0.5 rounded text-xs">QUAMUS</span></li>
+                        <li class="flex justify-between border-b border-slate-100 pb-2"><span>Waktu Telepon Terjadwal</span> <span class="font-semibold text-slate-900">Berkala</span></li>
+                    </div>
+                    <div class="p-4 bg-amber-50/60 border border-amber-100 rounded-xl">
+                        <h3 class="font-bold text-sm text-amber-900 mb-1 flex items-center"><i class="fa-solid fa-circle-exclamation mr-2 text-xs"></i>Catatan Kunjungan Wali Santri:</h3>
+                        <p class="text-xs text-amber-800 font-semibold">Kunjungan hanya diperbolehkan pada jadwal yang telah ditentukan oleh pengurus pesantren demi menjaga kekhusyukan belajar santri.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+<!-- FOOTER BOTTOM -->
+        <footer class="bg-white text-slate-600 pt-16 pb-8 border-t border-slate-100 text-sm">
+    <div class="container mx-auto px-4 sm:px-6">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-12">
+            
+            <div class="md:col-span-4 space-y-4">
+                <div class="flex items-center space-x-3">
+                    <img src="favicon.webp" alt="Rubath Logo" class="w-10 h-10 bg-emerald-50 rounded-xl object-cover shadow-sm flex-shrink-0" />
+                    <div class="flex flex-col">
+                        <span class="text-lg font-extrabold tracking-wider text-slate-900 leading-none mb-1">RUBATH NURUL MUSTHOFA</span>
+                        <span class="text-[10px] font-bold text-emerald-600 tracking-widest uppercase">DEPOK JAWA BARAT INDONESIA</span>
+                    </div>
+                </div>
+                <div class="border-l-2 border-emerald-500 pl-4 py-1 italic text-slate-500 max-w-sm">
+                    "Menempa generasi Qur'ani yang berakhlak mulia, unggul dalam ilmu, dan kuat dalam amalan." Menjadi pusat pendidikan Islam yang <span class="text-emerald-600 font-bold not-italic">BERKAH UNTUK SEMUA KALANGAN.</span>
+                </div>
+            </div>
+
+            <div class="md:col-span-2 space-y-3">
+                <h4 class="font-bold text-xs uppercase tracking-widest text-emerald-600">Navigasi</h4>
+                <ul class="space-y-2.5 font-medium">
+                    <li><a href="index.html#beranda" class="hover:text-emerald-600 transition-colors">Beranda</a></li>
+                    <li><a href="index.html#fitur" class="hover:text-emerald-600 transition-colors">Fitur</a></li>
+                    <li><a href="pengurus.html" class="hover:text-emerald-600 transition-colors">Pengurus</a></li>
+                    <li><a href="index.html#santri" class="hover:text-emerald-600 transition-colors">Santri</a></li>
+                    <li><a href="index.html#galeri" class="hover:text-emerald-600 transition-colors">Galeri</a></li>
+                    <li><a href="persyaratan&biaya.html" class="hover:text-emerald-600 transition-colors">Santri</a></li>
+                    <li><a href="fasilitas.html" class="hover:text-emerald-600 transition-colors">Fasilitas Pesantren</a></li>
+                </ul>
+            </div>
+
+            <div class="md:col-span-3 space-y-3">
+                <h4 class="font-bold text-xs uppercase tracking-widest text-emerald-600">Hubungi Kami</h4>
+                <ul class="space-y-4 font-medium">
+                    <li class="flex items-start space-x-3">
+                        <div class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center flex-shrink-0">
+                            <i class="fa-regular fa-comment-dots text-base"></i>
+                        </div>
+                        <span class="pt-1.5 hover:text-emerald-600 transition-colors cursor-pointer">+62 821 2526 8343 (Admin)</span>
+                    </li>
+                    <li class="flex items-start space-x-3">
+                        <div class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center flex-shrink-0">
+                            <i class="fa-solid fa-location-dot text-base"></i>
+                        </div>
+                        <span class="text-xs leading-relaxed text-slate-500 pt-0.5">
+                            Jl. Raya Cilodong No. 40, Kalibaru,<br>Depok, Jawa Barat 16413
+                        </span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="md:col-span-3 space-y-4">
+                <h4 class="font-bold text-xs uppercase tracking-widest text-emerald-600">Ikuti Dakwah Kami</h4>
+                <div class="flex space-x-3">
+                    <a href="#" class="w-11 h-11 border border-slate-200 rounded-2xl flex items-center justify-center text-slate-700 hover:border-emerald-600 hover:text-emerald-600 transition-all shadow-sm">
+                        <i class="fa-brands fa-instagram text-lg"></i>
+                    </a>
+                    <a href="https://youtube.com/@rubathnurulmusthofatv?si=URex0HLqAXIFnZmf" class="w-11 h-11 border border-slate-200 rounded-2xl flex items-center justify-center text-slate-700 hover:border-emerald-600 hover:text-emerald-600 transition-all shadow-sm">
+                        <i class="fa-brands fa-youtube text-lg"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@rubathnurulmusthofa__" class="w-11 h-11 border border-slate-200 rounded-2xl flex items-center justify-center text-slate-700 hover:border-emerald-600 hover:text-emerald-600 transition-all shadow-sm">
+                        <i class="fa-brands fa-tiktok text-lg"></i>
+                    </a>
+                    <a href="#" class="w-11 h-11 border border-slate-200 rounded-2xl flex items-center justify-center text-slate-700 hover:border-emerald-600 hover:text-emerald-600 transition-all shadow-sm">
+                        <i class="fa-regular fa-comment text-lg"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="pt-8 border-t border-slate-100 flex flex-col sm:flex-row justify-between items-center text-[11px] font-bold uppercase tracking-wider text-slate-400 gap-4">
+            <div class="italic font-medium text-slate-400 normal-case">Membangun Umat, Menjaga Martabat.</div>
+            <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-6 text-center sm:text-right">
+                <span>© 2026 PONPES RUBATH NURUL MUSTHOFA DEPOK</span>
+                <span class="text-[10px] text-slate-1000 font-normal">MADE WITH val_bahsin</span>
+            </div>
+        </div>
+    </div>
+</footer>    
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/6a7c5f3aab01cc1d4ca422b6/1jvqt803c';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
+</body>
+</html>
